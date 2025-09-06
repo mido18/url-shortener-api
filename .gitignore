@@ -82,3 +82,6 @@ Thumbs.db
 
 # Ignore Swagger generated files
 /swagger/v1/swagger.yaml
+
+# Ignore .keep files
+**/.keep
