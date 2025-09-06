@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Setting up URL Shortener API with Docker..."
+
+# Build and start services
+docker-compose up --build -d app redis
+
+echo "Services started!"
+echo "API available at: http://localhost:3000"
+echo "Swagger docs at: http://localhost:3000/api-docs"
+
+# Show logs
+docker-compose logs -f app

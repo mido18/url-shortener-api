@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=development
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    command: >
+      bash -c "
+        bundle install &&
+        rails db:create &&
+        rails db:migrate &&
+        rails server -b 0.0.0.0
+      "
+
+  test:
+    build: .
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379/1
+      - RAILS_ENV=test
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+    command: >
+      bash -c "
+        bundle install &&
+        rails db:create &&
+        rails db:migrate &&
+        bundle exec rspec
+      "
+
+volumes:
+  redis_data:
+  bundle_cache:
