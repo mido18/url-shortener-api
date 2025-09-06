@@ -112,6 +112,25 @@ curl http://localhost:3000/api/v1/decode/a00001
 
 Existing clients will continue to work without modification, but updating to versioned endpoints is recommended for better API evolution support.
 
+## API Documentation
+
+Interactive API documentation is available via Swagger UI:
+
+**Access Swagger UI:** http://localhost:3000/api-docs
+
+### Features:
+- **Interactive testing** - Try API endpoints directly from the browser
+- **Complete documentation** - All endpoints with request/response examples
+- **Schema validation** - See required parameters and data types
+- **Legacy endpoints** - Both versioned and legacy endpoints documented
+
+### Usage:
+1. Start the Rails server: `rails server`
+2. Open http://localhost:3000/api-docs in your browser
+3. Expand endpoint sections to see details
+4. Click "Try it out" to test endpoints interactively
+5. View request/response examples and schemas
+
 ## Setup
 
 ### Prerequisites
